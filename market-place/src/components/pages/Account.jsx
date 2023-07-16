@@ -27,7 +27,7 @@ function Account(){
 
                     fData.append('text',text);
                     console.log(text)
-                    const url = 'http://localhost:80/server/'
+                    const url = 'http://localhost:80/server/routes/userchange.php'
                     axios.post(url,fData);
                     sessionStorage.setItem(name,text);
                     window.location.reload(true)

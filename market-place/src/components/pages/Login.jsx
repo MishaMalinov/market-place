@@ -5,18 +5,13 @@ import style from '../styles/Login.module.css'
 import {Link} from 'react-router-dom';
 function Login() {
     const [userName,setUserName] = useState("");
-
-    // const [firstName,setFirstName] = useState("");
-    // const [secondName,setSecondName] = useState("");
-    // const [signed,setSigned]=useState(false)
     const [pass,setPass]=useState("");
-    // const [check,setCheck]=useState('')
     const [message,setMessage]=useState(null)
     
     let loginHandler =()=>{
         setMessage('loading...')
         let fData = new FormData();
-        const url = 'http://localhost:80/server/'
+        const url = 'http://localhost:80/server/routes/login.php'
         fData.append('action','login')
         fData.append('userName',userName);
         fData.append('pass',pass);

@@ -18,7 +18,7 @@ function Register(){
             fData.append('userName',login);
             fData.append('pass',pass);
 
-            const url = 'http://localhost:80/server/'
+            const url = 'http://localhost:80/server/routes/register.php'
 
             axios.post(url,fData).then(res=>console.log(res.data));
         }
@@ -34,7 +34,7 @@ function Register(){
                         <input type="password" placeholder="password" onChange={(e)=>{setPass(e.target.value)}}/>
                         <input type="password" placeholder="password" onChange={(e)=>{setCheck(e.target.value)}}/>
                         <div className="checker">
-                            {(pass.length<4 || check.length<4)&&pass!==check?'Passwords are different':''}
+                            {(pass.length>=4 || check.length>=4)&&pass!==check?'Passwords are different':''}
                         </div>
                         <Link to="/login" className={style.button}><button onClick={(pass.length<4 || check.length<4)||pass!==check||login.length<3?wrongDataHendler:registerHendler} >Register</button></Link>
                         
