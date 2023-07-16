@@ -1,0 +1,54 @@
+.content{
+    width: 300px;
+    /* height: 325px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+    align-items: center;
+    border-radius: 10%;
+    background-color: #cf81b883;
+    & p {
+        font-size: 16px;
+        opacity: 0.8;
+    }
+}
+.form{
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+        & input{
+            margin-top: 30px;
+            height: 30px;
+            border-radius: 5px;
+        }
+        & button{
+            margin-top: 30px;
+            height: 30px;
+        }
+    
+}
+.login{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.error{
+    color: red;
+}
+.good{
+    color: green;
+}
+
+.button{
+    width: 100%;
+}
+
+button{
+    width: 100%;
+}
