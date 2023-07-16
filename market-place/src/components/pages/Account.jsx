@@ -18,7 +18,7 @@ function Account(){
         return(
             <>
             <input type="text" placeholder={`Enter ${name}`} ref={reff} onKeyDown={(event)=>{
-                if(event.key === "Enter"){
+                if(event.key === "Enter" && reff.current.value.length >=3){
                     const text = reff.current.value;
                     let fData = new FormData();
                     fData.append('action','userChange');
