@@ -10,7 +10,7 @@ function Head() {
             <nav className="nav">
                 <ul className={style.ul}>
                     <li><Link to="/">Home </Link></li>
-                    <li><Link to="/">Publication </Link></li>
+                    <li><Link to="/publications">Publications </Link></li>
                     <li><Link to="/login">{sessionStorage.length===0?'Log in':'Profile'}</Link></li>
                 </ul>
             </nav>
