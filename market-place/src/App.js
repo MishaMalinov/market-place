@@ -8,6 +8,7 @@ import { useState } from "react";
 import Register from "./components/pages/Register";
 import AddPublication from "./components/pages/AddPublication";
 import Publications from "./components/pages/Publications";
+import Publication from "./components/pages/Publication";
 
 function App() {
   // const [login,setLogin] = useState(<Login/>)
@@ -24,7 +25,7 @@ function App() {
           <Route path="/login" element={login?<Login/>:<Account/>} />
           <Route path="/register" element={<Register/>}/>
           <Route path="/addpublication" element={<AddPublication/>}/>
-
+          <Route path="/publication" element={<Publication/>}/>
       </Routes>
       
       

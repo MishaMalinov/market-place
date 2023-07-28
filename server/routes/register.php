@@ -12,10 +12,10 @@ $count = $res->fetch_assoc()['count'];
 if($count){
     echo 'ERROR';
 }else{
-    $sql ="INSERT INTO `users` (`uid`, `username`, `password`, `name`, `surname`, `admin`) VALUES (NULL, '{$_POST['userName']}', '$pass', '', '', '0')";
+    $sql ="INSERT INTO `users` (`uid`, `username`, `password`, `name`, `surname`, `admin`, `tel_number`, `email`) VALUES (NULL, '{$_POST['userName']}', '$pass', '', '', '0','','{$_POST['email']}')";
     $res = $mysqli->query($sql);
     echo 'All is good!!';
-    echo json_encode($res->fetch_assoc());
+    // echo json_encode($res->fetch_assoc());
 
 }
 ?>

@@ -1,0 +1,33 @@
+.post{
+    height: 400px;
+    width: 300px;
+    /* border: black solid 2px; */
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.199);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    & div{
+        width: 250px;
+    }
+    
+}
+.image{
+    max-height: 250px;
+    width: 250px;
+    
+}
+.image_container{
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+}
+.price_container{
+    font-size: 20px;
+}
+.link {
+    text-decoration: none;
+    color: rgb(1, 4, 31);
+}

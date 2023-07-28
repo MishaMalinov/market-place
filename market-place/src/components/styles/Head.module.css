@@ -6,8 +6,9 @@
     align-items: center;
     background-color: rgb(184, 10, 184);
 }
-img{
+.logo{
     height: 90px;
+    width: 90px;
 }
 nav{
     width: 500px;

@@ -1,20 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import style from '../styles/Publications.module.css';
+import Post from "./Post";
 function Publications() {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Remove useRef as it is not needed
-  function Post({ article, price, description }) {
-    return (
-      <div className="post">
-        <h1 className="article">{article}</h1>
-        <div className="price">{price}</div>
-        <div className="description">{description}</div>
-      </div>
-    );
-  }
 
   useEffect(() => {
     const fData = new FormData();
@@ -31,16 +22,25 @@ function Publications() {
     return <div className="loading">Loading...</div>;
   } else {
     return (
-      <div className="publications">
-        {/* Loop through the posts state to render Post components */}
-        {posts.map((el, index) => (
+      <div className={style.publications}>
+        
+        <div className={style.head}>
+          <h1 className={style.title}>All publications</h1>
+        </div>
+
+        <div className={style.posts}>
+          {posts.map((el, index) => (
           <Post
             key={index}
             article={el.article}
             price={el.price}
             description={el.description}
+            photos={el.photos}
+            id={el.pid}
           />
         ))}
+        </div>
+        
       </div>
     );
   }

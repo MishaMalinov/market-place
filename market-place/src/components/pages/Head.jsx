@@ -1,11 +1,10 @@
-import React from "react";
 import style from '../styles/Head.module.css';
 import { Link } from "react-router-dom";
 function Head() {
     return (
         <div className={style.head}>
-            <div className="logo">
-                <img src="https://imgpng.ru/d/letter_b_PNG4.png" />
+            <div >
+                <img className={style.logo} src="https://imgpng.ru/d/letter_b_PNG4.png" />
             </div>
             <nav className="nav">
                 <ul className={style.ul}>
