@@ -11,7 +11,7 @@ function Login() {
     let loginHandler =()=>{
         setMessage('loading...')
         let fData = new FormData();
-        const url = 'http://localhost:80/server/routes/login.php'
+        const url = 'http://server/routes/login.php'
         fData.append('action','login')
         fData.append('userName',userName);
         fData.append('pass',pass);

@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom";
 import style from '../styles/Account.module.css'
-import { useState, useRef } from "react";
+import { useState, useRef,useEffect } from "react";
 import axios from "axios";
 function Account() {
-    function handlePublication(){
+    const [loadPublications,setLoadPublications] = useState(true);
+    const [pubs,setPubs] = useState([]);
+    useEffect(()=>{
+        const url = 'http://server/routes/publicationInProfile.php';
+        const fData = new FormData();
+        fData.append('uid', sessionStorage.getItem('uid'));
 
+        axios.post(url,fData).then((res)=>setPubs(res.data));
+        setLoadPublications(false);
 
-    }
+    },[])
     function handleButton() {
         for (let key of Object.keys(sessionStorage)) {
             sessionStorage.removeItem(key)
@@ -18,7 +25,6 @@ function Account() {
 
 
     function SettingData({ name, reff }) {
-
         return (
             <>
                 <input type="text" placeholder={`Enter ${name}`} ref={reff} onKeyDown={(event) => {
@@ -31,7 +37,7 @@ function Account() {
 
                         fData.append('text', text);
                         console.log(text)
-                        const url = 'http://localhost:80/server/routes/userchange.php'
+                        const url = 'http://server/routes/userchange.php'
                         axios.post(url, fData);
                         sessionStorage.setItem(name, text);
                         window.location.reload(true)
@@ -40,9 +46,43 @@ function Account() {
             </>
         )
     }
+    function List(){
+        if(loadPublications){
+            return(
+                <div>
+                    Loading...
+                </div>
+            )
+        }else{
+            return(
+                <div className="publications">
+                    <h1>Publications</h1>
+                    <div className="container">
+                        <ul>
+                        {
+                            pubs.map((element,index) => {
+                                return(<li key={index}>
+                                    <Link to={`/publication?id=${element.pid}`}>{element.article}</Link>
+                                   
+
+                                </li>)
+                            })
+                        }
+                        </ul>
+                    </div>
+
+                </div>
+            )
+        }
+
+    }
+
+
+
+
     return (
         <div className={style.account}>
-            <div className="label">
+            <div className={style.label}>
                 <h1>Profile</h1>
             </div>
 
@@ -67,18 +107,22 @@ function Account() {
                     </li>
                 </ul>
                 <div className="signout">
-                    <Link to='/addpublication'><button onClick={handlePublication}>Add new publication</button></Link>
+                    <Link to='/addpublication'><button >Add new publication</button></Link>
 
                 </div>
 
             </div>
-
-
             <div className="signout">
                 <Link to='/login'><button onClick={handleButton}>Sign Out</button></Link>
 
             </div>
             
+            <List/>
+            
+            
+
+
+
         </div>
 
     )

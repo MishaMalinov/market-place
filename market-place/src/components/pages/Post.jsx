@@ -3,12 +3,12 @@ import style from '../styles/Post.module.css';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 function Post({ article, price, photos,id }) {
-    console.log(photos)
+    // console.log(photos)
     const [images, setImages] = useState('');
     const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
         const fData = new FormData();
-        const url = 'http://localhost:80/server/routes/image.php';
+        const url = 'http://server/routes/image.php';
         fData.append('path', photos.split(';')[0]);
         axios.post(url, fData).then(res => setImages(res.data));
         setIsLoading(false);

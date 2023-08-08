@@ -28,11 +28,9 @@ function AddPublication(){
             fData.append('article',article);
             fData.append('price',price);
             fData.append('description',description);
-            fData.append('uid',sessionStorage.getItem('uid'))
-            const url = "http://localhost:80/server/routes/createpublication.php";
-            await axios.post(url,fData).then(response=>{
-                console.log(response.data)
-            })
+            fData.append('uid',sessionStorage.getItem('uid'));
+            const url = "http://server/routes/createpublication.php";
+            await axios.post(url,fData);
         }else{
             setMessage(<p className="error">Something went wrong, try again)</p>);
         }

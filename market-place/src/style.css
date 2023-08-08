@@ -9,3 +9,6 @@ body{
 .error{
     color: red;
 }
+a{
+    text-decoration: none;
+}

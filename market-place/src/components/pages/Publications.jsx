@@ -2,17 +2,24 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import style from '../styles/Publications.module.css';
 import Post from "./Post";
+import Filter from "./Publications/Filter";
 function Publications() {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-
+  //TODO: доробити фільтер
   useEffect(() => {
     const fData = new FormData();
     fData.append("publications", "1");
-    const url = "http://localhost:80/server/routes/publications.php";
+    let url = "http://server/routes/publications.php?";
+    if(sessionStorage.getItem('price_low')){
+      url+=`low=${sessionStorage.getItem('price_low')}`
+      fData.append('filter','true')
+    }
+    console.log(url)
     axios.post(url, fData).then((res) => {
       // Update state directly with the response data
+
       setPosts(res.data);
       setIsLoading(false);
     });
@@ -23,7 +30,7 @@ function Publications() {
   } else {
     return (
       <div className={style.publications}>
-        
+        <Filter setPage={setPosts}/>
         <div className={style.head}>
           <h1 className={style.title}>All publications</h1>
         </div>
