@@ -1,15 +1,15 @@
 <?php
 include('../db.php');
 $json = array();
-
 if(isset($_POST['publications'])){
     
     $sql = "SELECT * FROM `publications`";
-    if(isset($_POST["filter"])){
-        $sql .= " WHERE `price`>={$_GET['low']} ";
-        
-        
     
+    if(isset($_POST["filter"])){
+        if($_GET['low']==''){
+            $_GET['low'] = 0;
+        }
+        $sql .= " WHERE `price`>={$_GET['low']} AND `price`<={$_GET['high']} ";
     
     }
     $sql.=" LIMIT 25";
@@ -22,6 +22,8 @@ if(isset($_POST['publications'])){
         array_push($json,$row);
         
     }
+    
+
 
     echo json_encode($json);
 }
