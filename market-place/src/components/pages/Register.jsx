@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import style from '../styles/Login.module.css'
+import api from '../../path';
 import { useState } from 'react';
 import axios from 'axios';
 function Register(){
@@ -29,7 +30,7 @@ function Register(){
             let fData = new FormData();
             fData.append('email',email);
 
-            const url = 'http://server/sendemail/send.php';
+            const url = api+'/server/sendemail/send.php';
             axios.post(url,fData).then(response=>{
                 console.log(response.data.code)
                 setCode(response.data.code);
@@ -68,7 +69,7 @@ function Register(){
             fData.append('userName',login);
             fData.append('pass',pass);
             fData.append('email',email);
-            const url = 'http://server/routes/register.php'
+            const url = api+'/server/routes/register.php'
             console.log(code);
             console.log(checkCode)
             axios.post(url,fData).then(res=>console.log(res.data));

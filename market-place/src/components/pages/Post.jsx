@@ -1,4 +1,6 @@
 import axios from 'axios';
+import api from "../../path";
+
 import style from '../styles/Post.module.css';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -8,7 +10,7 @@ function Post({ article, price, photos,id }) {
     const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
         const fData = new FormData();
-        const url = 'http://server/routes/image.php';
+        const url = api+'/server/routes/image.php';
         fData.append('path', photos.split(';')[0]);
         axios.post(url, fData).then(res => setImages(res.data));
         setIsLoading(false);

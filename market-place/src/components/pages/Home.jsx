@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import style from '../styles/Home.module.css'
 
 function Home(){
-    console.log(sessionStorage.getItem('user'))
-    console.log(sessionStorage)
+    
     return(
         <div className={style.home}>
             <h1>BazarUA</h1>

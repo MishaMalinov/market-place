@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios';
+import api from "../../path";
 import { useState } from "react";
 import style from '../styles/Login.module.css'
 import {Link} from 'react-router-dom';
@@ -11,7 +12,7 @@ function Login() {
     let loginHandler =()=>{
         setMessage('loading...')
         let fData = new FormData();
-        const url = 'http://server/routes/login.php'
+        const url = api+'/server/routes/login.php'
         fData.append('action','login')
         fData.append('userName',userName);
         fData.append('pass',pass);
@@ -21,6 +22,7 @@ function Login() {
             if(response.data.username){
                 setMessage(<p className={style.good}>You have loggined</p>)
                 Object.keys(response.data).forEach(key=>{
+                    
                     sessionStorage.setItem(key,response.data[key])
                 })
 

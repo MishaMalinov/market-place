@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import api from "../../../path";
+
 function Filter({ setPosts, setIsLoading }) {
     const [low, setLow] = useState(sessionStorage.getItem('price_low')!==sessionStorage.getItem('price_minimum')? sessionStorage.getItem('price_low'):'');
     const [high, setHigh] = useState(sessionStorage.getItem('price_high')!==sessionStorage.getItem('price_maximum')? sessionStorage.getItem('price_high'):'');
@@ -10,7 +12,7 @@ function Filter({ setPosts, setIsLoading }) {
     function checker(string) {
 
         if (Number(string) < 0 || Number(string) >= 99999999) return false;
-
+        if(low!==''&&high!=='') return false;
         return true;
 
     }
@@ -21,7 +23,7 @@ function Filter({ setPosts, setIsLoading }) {
         //rerender page with all publications
         const fData = new FormData();
         fData.append("publications", "1");
-        let url = "http://server/routes/publications.php?";
+        let url = api+"/server/routes/publications.php?";
         axios.post(url, fData).then((res) => {
             // Update state directly with the response data
             setPosts(res.data);
@@ -32,10 +34,10 @@ function Filter({ setPosts, setIsLoading }) {
     }
 
     function filterHandler() {
-        if (checker(low) && checker(high)) {
+        if (checker(low) && checker(high) ) {
             setMessage('')
             
-            const url = `http://server/routes/publications.php?low=${low||sessionStorage.getItem('price_minimum')}&high=${high||sessionStorage.getItem('price_maximum')}`;
+            const url = api+`/server/routes/publications.php?low=${low||sessionStorage.getItem('price_minimum')}&high=${high||sessionStorage.getItem('price_maximum')}`;
             const fData = new FormData();
             fData.append('filter', 'true');
             fData.append('publications', 'true');

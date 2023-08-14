@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import api from "../../path.js";
+
 import style from '../styles/Publications.module.css';
 import Post from "./Post";
 import Filter from "./Publications/Filter";
@@ -18,7 +20,7 @@ function Publications() {
     let url='';
     if(!(sessionStorage.getItem('price_minimum')&&sessionStorage.getItem('price_maximum'))){
 
-      url = "http://server/routes/preloadMinMax.php";
+      url = api+"/server/routes/preloadMinMax.php";
       fData.append('minmax','1');
       axios.post(url,fData).then(res=>res.data).then(data=>{
 
@@ -32,7 +34,7 @@ function Publications() {
     }
     
 
-    url = "http://server/routes/publications.php?";
+    url = api+"/server/routes/publications.php?";
     // remember filter in sessionStorage 
     
     if(sessionStorage.getItem('price_low') || sessionStorage.getItem('price_high')){

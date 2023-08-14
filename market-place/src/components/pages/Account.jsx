@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import api from "../../path";
 import style from '../styles/Account.module.css'
 import { useState, useRef,useEffect } from "react";
 import axios from "axios";
@@ -6,7 +7,7 @@ function Account() {
     const [loadPublications,setLoadPublications] = useState(true);
     const [pubs,setPubs] = useState([]);
     useEffect(()=>{
-        const url = 'http://server/routes/publicationInProfile.php';
+        const url = api+'/server/routes/publicationInProfile.php';
         const fData = new FormData();
         fData.append('uid', sessionStorage.getItem('uid'));
 
@@ -37,7 +38,7 @@ function Account() {
 
                         fData.append('text', text);
                         console.log(text)
-                        const url = 'http://server/routes/userchange.php'
+                        const url = api+'/server/routes/userchange.php'
                         axios.post(url, fData);
                         sessionStorage.setItem(name, text);
                         window.location.reload(true)

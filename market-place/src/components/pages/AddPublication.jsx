@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from 'axios';
+import api from "../../path";
 function AddPublication(){
     const [photos,setPhotos] = useState([]);
     const [article,setArticle] = useState('');
@@ -29,7 +30,7 @@ function AddPublication(){
             fData.append('price',price);
             fData.append('description',description);
             fData.append('uid',sessionStorage.getItem('uid'));
-            const url = "http://server/routes/createpublication.php";
+            const url = api+"/server/routes/createpublication.php";
             await axios.post(url,fData);
         }else{
             setMessage(<p className="error">Something went wrong, try again)</p>);

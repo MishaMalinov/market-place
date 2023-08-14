@@ -3,13 +3,13 @@ include('../db.php');
 $json = array();
 if(isset($_POST['publications'])){
     
-    $sql = "SELECT * FROM `publications`";
+    $sql = "SELECT * FROM `publications` WHERE `in_stock`=1 ";
     
     if(isset($_POST["filter"])){
         if($_GET['low']==''){
             $_GET['low'] = 0;
         }
-        $sql .= " WHERE `price`>={$_GET['low']} AND `price`<={$_GET['high']} ";
+        $sql .= " AND `price`>={$_GET['low']} AND `price`<={$_GET['high']} ";
     
     }
     $sql.=" LIMIT 25";
